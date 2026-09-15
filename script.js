@@ -1,17 +1,33 @@
+const polishStylesheet = document.createElement('link');
+polishStylesheet.rel = 'stylesheet';
+polishStylesheet.href = '/polish.css';
+document.head.appendChild(polishStylesheet);
+
 const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.site-nav');
 
 if (navToggle && nav) {
+  const closeNav = () => {
+    nav.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-open');
+  };
+
   navToggle.addEventListener('click', () => {
     const open = nav.classList.toggle('is-open');
     navToggle.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('nav-open', open);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+      closeNav();
+      navToggle.focus();
+    }
   });
 
   nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('is-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', closeNav);
   });
 }
 
