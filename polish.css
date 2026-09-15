@@ -1,4 +1,4 @@
-/* Visual polish pass after live desktop/mobile review — 2026-09-15 */
+/* Visual polish pass after live desktop/mobile review — updated 2026-09-15 */
 :root{
   --shell:min(1220px,calc(100vw - 56px));
 }
@@ -23,6 +23,49 @@
   letter-spacing:-.052em;
 }
 
+.automation-project{
+  grid-column:1 / -1;
+  min-height:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(233,237,255,.58));
+  border-color:rgba(47,92,255,.2);
+}
+.automation-project .project-copy{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);
+  gap:0 64px;
+  align-items:start;
+}
+.automation-project .project-topline,
+.automation-project h3,
+.automation-project .project-summary,
+.automation-project .project-tags{
+  grid-column:1;
+}
+.automation-project .project-facts{
+  grid-column:2;
+  grid-row:2 / span 3;
+  align-self:center;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  margin:0;
+  padding:26px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:rgba(255,255,255,.64);
+}
+.automation-project .project-facts span{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:16px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--line);
+}
+.automation-project .project-facts span:last-child{padding-bottom:0;border-bottom:0}
+.automation-project .project-facts strong{font-size:28px}
+.automation-project .project-actions{grid-column:1 / -1}
+
 body.nav-open{overflow:hidden}
 body.nav-open::before{
   content:"";
@@ -43,6 +86,16 @@ body.nav-open::before{
 @media (max-width:980px){
   :root{--shell:min(100% - 36px,1180px)}
   .hero h1{font-size:clamp(3.25rem,9.4vw,5.7rem);max-width:780px}
+  .automation-project .project-copy{grid-template-columns:1fr;gap:28px}
+  .automation-project .project-topline,
+  .automation-project h3,
+  .automation-project .project-summary,
+  .automation-project .project-tags,
+  .automation-project .project-facts,
+  .automation-project .project-actions{grid-column:1;grid-row:auto}
+  .automation-project .project-facts{margin-top:4px;grid-template-columns:repeat(3,1fr)}
+  .automation-project .project-facts span{display:block;border-bottom:0;border-right:1px solid var(--line);padding:0 14px 0 0}
+  .automation-project .project-facts span:last-child{border-right:0}
 }
 
 @media (max-width:760px){
@@ -65,6 +118,14 @@ body.nav-open::before{
   }
   .portrait-note{left:14px;right:14px;bottom:14px}
   .section{padding:88px 0}
+  .automation-project .project-facts{grid-template-columns:1fr;gap:10px}
+  .automation-project .project-facts span{
+    display:flex;
+    border-right:0;
+    border-bottom:1px solid var(--line);
+    padding:0 0 10px;
+  }
+  .automation-project .project-facts span:last-child{border-bottom:0;padding-bottom:0}
 }
 
 @media (max-width:420px){
